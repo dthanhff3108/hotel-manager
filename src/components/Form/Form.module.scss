@@ -1,0 +1,61 @@
+.wrapper {
+    background-color: rgba(255, 255, 255,1);
+    padding: 30px;
+    color: rgb(195, 191, 191);
+    border-radius: 12px;
+    max-width: 450px;
+    box-shadow: 0 0 25px #47cf73;
+}
+.feild {
+    width: 100%;
+    overflow: hidden;
+}
+.input {
+    background-color: rgba(232, 232, 232, 0.8);
+    caret-color: red;
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 22px;
+    font-size: 18px;
+    border-radius: 12px;
+}
+.login-btn {
+    background-color: #47cf73;
+    color: white;
+    text-transform: uppercase;
+    font-size: 16px;
+    width: 100%;
+    padding: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 22px 0;
+    transition: all 0.3s;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+.create {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c1e1d;
+    .create-link {
+        cursor: pointer;
+        text-transform: uppercase;
+        color: #57a45a;
+    }
+}
+// label
+.label {
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+.btn-add{
+    width: 100%;
+    background-color: rgb(3, 3, 23);
+    color : white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 18px;
+}

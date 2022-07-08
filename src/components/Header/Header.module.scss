@@ -1,0 +1,116 @@
+.header {
+    --color: #1e9bff;
+    display: flex;
+    height: 136px;
+    padding: 0 64px;
+    background-color: transparent;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid red;
+    z-index: 1;
+    transition: all 0.5s;
+    animation: blink 2s infinite,
+}
+@keyframes blink {
+    0%{
+        border-color: rgb(179, 255, 0);
+    }
+    100%{
+        border-color: rgb(0, 221, 255);
+
+    }
+}
+.text-head {
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 12px 26px;
+    margin-left: 34px;
+    position: relative;
+    .name {
+        font-size: 32px;
+        font-weight: 800;
+        transition: all 0.5s;
+    }
+    .desc {
+        font-style: italic;
+        transition: all 0.5s;
+    }
+    i {
+        display: block;
+        inset: 0;
+        position: absolute;
+        &::before {
+            content: '';
+            position: absolute;
+            top: -4.5px;
+            left: 80%;
+            width: 10px;
+            height: 5px;
+            border: 2px solid #000;
+            transform: translateX(-50%);
+            transition: all 0.5s;
+            background-color:white;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -4.5px;
+            right: 80%;
+            width: 10px;
+            height: 5px;
+            border: 2px solid #000;
+            transform: translateX(-50%);
+            transition: all 0.5s;
+            background-color:white;
+        }
+    }
+}
+
+.text-head.active {
+    border: 1px solid var(--color);
+    box-shadow: 0 0 25px var(--color);
+    .name{
+        color: #ff866f;
+    }
+    .desc{
+        color: #36c590;
+    }
+    i::before {
+        width: 20px;
+        left: 20%;
+        border: 2px solid var(--color);
+
+    }
+    i::after {
+        width: 20px;
+        right: 20%;
+        border: 2px solid var(--color);
+    }
+}
+
+// nav 
+.nav{
+    display: flex;
+}
+.nav-item{
+    color: white;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 18px 40px;
+    border : 2px solid rgba(37, 202, 220, 0.6);
+    margin-right : 50px;
+    min-width:160px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s;
+    &:hover{
+        border-color : rgba(0, 229, 255);
+    }
+}
+// user-button
+

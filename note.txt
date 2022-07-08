@@ -1,0 +1,4 @@
+ROUTES :    
+    1: Homepage
+    2: Room manager
+    3: 

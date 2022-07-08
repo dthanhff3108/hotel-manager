@@ -1,0 +1,20 @@
+.wrapper{
+    position:relative;
+    background-color: #21262f;
+}
+.login{
+    position: absolute;
+    right: 10%;
+    top: 25%;
+    z-index: 1;
+}
+.desc{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: white;
+    letter-spacing:1px;
+    background-color: rgba(101, 101, 101, 0.6);
+    padding: 12px 18px;
+    border-radius:12px ;
+}

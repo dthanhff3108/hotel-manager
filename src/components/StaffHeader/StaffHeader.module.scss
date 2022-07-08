@@ -1,0 +1,39 @@
+.wrapper{
+    display: flex;
+}
+.name-hotel{
+    padding: 12px 12px;
+    width: 270px;
+    font-weight: 800;
+    text-align: center;
+}
+.about{
+    background-color: rgb(20, 20, 33);
+    flex: 1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    padding: 6px 28px;
+}
+.desc{
+    display: flex;
+    align-items: center;
+}
+.info{
+    display: flex;
+    align-items: center;
+    margin-right: 18px;
+    .avatar{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    .name{
+        margin-left: 16px;
+        font-weight: 600;
+    }
+}
+.settings{
+    padding: 12px 20px;
+}

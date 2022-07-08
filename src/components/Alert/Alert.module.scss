@@ -1,0 +1,17 @@
+.alert{
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 14px 20px;
+    font-size: 26px;
+    border-radius:14px;
+    transition: all 0.3s;
+    &.success{
+        background-color: rgba(70, 214, 70,.8);
+    }
+    &.error{
+        background-color: rgba(255, 40, 40, 0.8);
+    }
+}

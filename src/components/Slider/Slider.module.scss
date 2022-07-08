@@ -1,0 +1,13 @@
+.slider-item{
+    max-width: 100%;
+    height:735px;
+    object-fit: contain;
+    overflow: hidden;
+    .slider-img{
+        object-fit: cover;
+        width:100%;
+        height:100%;
+        display: block;
+        overflow: hidden;
+    }
+}
