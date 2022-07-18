@@ -63,10 +63,6 @@
 .delete {
     background-color: rgb(251, 56, 35);
 }
-.service{
-    margin-top: 40px;
-    background-color: rgb(31, 165, 255);
-}
 .pay {
     margin-top: 40px;
     background-color: rgb(89, 247, 49);
@@ -87,5 +83,36 @@
     img {
         width: 400px;
         height: 200px;
+        border-radius:12px;
+    }
+    p{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+.services{
+    margin-top: 80px;
+    .service{
+        margin-bottom: 20px;
+        display: flex;
+        span{
+            display: block;
+            font-size: 20px;
+            font-weight: 600;
+            min-width: 180px;
+        }
+        input{
+            height: 30px;
+            line-height: 30px;
+            font-weight: 600;
+            font-size: 18px;
+            width: 100px;
+            padding: 0 0 0 12px;
+        }
+    }
+    .total-price{
+        margin-top: 60px;
+        font-size: 22px;
+        font-weight: 600;
     }
 }

@@ -39,10 +39,15 @@
     position:relative;
     margin-bottom: 10px;
     color: white;
-    padding: 20px 12px;
+    padding: 20px 20px;
     font-weight: 800;
     border-radius: 10px;
     transition: all 0.3s;
+    height: 80px;
+    .tab-item{
+        display: flex;
+        align-items: center;
+    }
     &.active{
         background-color: rgb(107, 84, 185);
     }
@@ -58,7 +63,7 @@
     }
     span{
         position: absolute;
-        left: 55%;
+        left: 65%;
         top: 30%;
         background-color: rgb(244, 41, 41);
         border-radius: 50%;
@@ -66,5 +71,25 @@
         height: 30px;
         text-align: center;
         line-height: 30px;
+        transition: all 1s;
+        animation: buzz 1s ease-in-out infinite forwards;
     }
 }
+@keyframes buzz {
+    0%{
+        transform: scale(1) translateX(0%);
+    }
+    25%{
+        transform: scale(1.1) translateX(-10%);
+    }
+    50%{
+        transform: scale(1) translateX(0%);
+    }
+    75%{
+        transform: scale(1.1) translateX(10%);
+    }
+    100%{
+        transform: scale(1) translateX(0%);
+    }
+}
+

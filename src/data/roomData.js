@@ -10,18 +10,6 @@ const roomData = [
         h: 1,
         status: 'Ready',
         quantity: 2,
-        services : [
-            {
-                name:"Water",
-                number : 2,
-                price : 1
-            },
-            { 
-                name : "Snack",
-                number : 10,
-                price : 2
-            }
-        ],
         img: 'https://upscalelivingmag.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2019/03/Post-Ranch-Inn-in-Big-Sur-CAFILEminimizer.jpg',
         cost: 2000,
         idCustomer: "",

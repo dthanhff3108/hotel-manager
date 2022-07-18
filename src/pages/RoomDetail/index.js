@@ -14,33 +14,36 @@ import { faCircleCheck, faCirclePlus, faPeopleGroup, faWrench } from '@fortaweso
 const cx = classNames.bind(styles);
 
 function RoomDetail() {
-    const {setCoin,payList, setPayList} = useContext(AppContext)
+
+    const { setCoin, setPayList, services,  } = useContext(AppContext);
     // Get data through Link
-    console.log(payList);
     const location = useLocation();
-    const { id, name,cost, status, quantity,services, idCustomer,startTime,endTime } = location.state;
+    const { id, name, cost, status, quantity, idCustomer, startTime, endTime } = location.state;
     const [edit, setEdit] = useState(false);
     const [guest, setGuest] = useState('');
     const [statusValue, setStatusValue] = useState(status);
     const [quantityValue, setQuantityValue] = useState(quantity);
+    const [servicesQuantity, setServicesQuantity] = useState([]);
+
     // AppContext
     const { roomList, setRoomList } = useContext(AppContext);
     const nameRef = useRef(null);
     const statusRef = useRef('');
     const quantityRef = useRef('');
+    let total = servicesQuantity.reduce((total, ser) => total + ser.value * ser.cost, 0) ;
 
     const getNameUser = async (idCustomer) => {
         if (idCustomer) {
             const document = await getDoc(doc(db, 'auth', idCustomer));
             if (document.exists()) {
-                setGuest(document.data().name)
+                setGuest(document.data().name);
             }
         } else {
             return;
         }
     };
     getNameUser(idCustomer);
-    
+
     const handleDel = () => {
         setRoomList((list) => {
             return roomList.filter((room) => room.id !== id);
@@ -51,31 +54,6 @@ function RoomDetail() {
         nameRef.current.contentEditable = true;
         nameRef.current.focus();
     };
-    const handlePay = ()=>{
-        const end = new Date(endTime)
-        const start = new Date(startTime)
-        const totalDay = Math.ceil(Math.abs(end-start)/(1000*24*60*60))
-        setRoomList((list) => {
-            const newList = list.map((room) => {
-                if (room.id === id) {
-                    return { ...room, startTime:"",endTime:"",guest:"",quantity:"",status:"Ready", };
-                } else {
-                    return room;
-                }
-            });
-            return newList;
-        })
-        setPayList(list=>[...list,{
-            name : guest,
-            roomName: name,
-            time:totalDay,
-            priceRoom: cost,
-            cost:"",
-            services,
-
-        }])
-        // setCoin(prev=>prev + totalDay)
-    }
     const handleUpdate = () => {
         nameRef.current.contentEditable = false;
         quantityRef.current.contentEditable = false;
@@ -100,8 +78,71 @@ function RoomDetail() {
             setStatusValue(e.target.value);
         }
     };
+    const handlePay = () => {
+        const end = new Date(endTime);
+        const start = new Date(startTime);
+        const totalDay = Math.ceil(Math.abs(end - start) / (1000 * 24 * 60 * 60));
+        setRoomList((list) => {
+            const newList = list.map((room) => {
+                if (room.id === id) {
+                    return { ...room, startTime: '', endTime: '', guest: '', quantity: '', status: 'Ready' };
+                } else {
+                    return room;
+                }
+            });
+            return newList;
+        });
+        setPayList((list) => [
+            ...list,
+            {
+                name: guest,
+                roomName: name,
+                time: totalDay,
+                priceRoom: cost,
+                cost: total,
+            },
+        ]);
+        setCoin(prev=>prev + total+totalDay*cost)
+    };
     const handleChangeQuantity = (e) => {
         setQuantityValue(e.target.value);
+    };
+    const changeQuantity = (e, cost) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setServicesQuantity((prev) => {
+            if (prev.length === 0) {
+                return [
+                    {
+                        name: name,
+                        value: value,
+                        cost: cost,
+                    },
+                ];
+            } else {
+                if (prev.some((ser) => ser.name === name)) {
+                    return prev.map((ser) => {
+                        if (ser.name === name) {
+                            return {
+                                ...ser,
+                                value: value,
+                            };
+                        } else {
+                            return ser;
+                        }
+                    });
+                } else {
+                    return [
+                        ...prev,
+                        {
+                            name: name,
+                            value: value,
+                            cost: cost,
+                        },
+                    ];
+                }
+            }
+        });
     };
     return (
         <ManagerLayout>
@@ -151,18 +192,9 @@ function RoomDetail() {
                             Quantity: <span>{quantityValue}</span>
                         </p>
                     )}
-                    <p>Services:</p>
-                    <ul className={cx("list-service")}>
-                        { services && 
-                            services.map((item,index)=>(
-                                <li key={index} className={cx("service-item")}>
-                                    <span>{item["name"]} : {item["number"]}</span>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                    <p>Start Time: {startTime?startTime:""}</p>
-                    <p>End Time: {endTime?endTime:""}</p>
+
+                    <p>Start Time: {startTime ? startTime : ''}</p>
+                    <p>End Time: {endTime ? endTime : ''}</p>
                     {edit && (
                         <div className={cx('update')} onClick={handleUpdate}>
                             Update
@@ -178,15 +210,13 @@ function RoomDetail() {
                             Delete Room
                         </div>
                     </Link>
-                    <div className={cx('service','btn')}>
-                        Add Services
-                    </div>
+
                     <Link to="/room">
-                        {guest &&
-                             <div className={cx('pay', 'btn')} onClick={handlePay}>
-                                 Pay
+                        {guest && (
+                            <div className={cx('pay', 'btn')} onClick={handlePay}>
+                                Pay
                             </div>
-                        }
+                        )}
                     </Link>
                 </div>
                 <div className={cx('introduce')}>
@@ -195,6 +225,20 @@ function RoomDetail() {
                         src="https://saladanangbeach.com/wp-content/uploads/2020/03/85199296_2803066883116526_1104993255881179136_o.jpg"
                         alt=""
                     />
+                    <div className={cx('services')}>
+                        {services.map((service) => (
+                            <div className={cx('service')} key={service.id}>
+                                <span>{service.name}: </span>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    name={service.name}
+                                    onChange={(e, cost) => changeQuantity(e, service.cost)}
+                                />
+                            </div>
+                        ))}
+                        <p className={cx('total-price')}> Price Total : {total}</p>
+                    </div>
                 </div>
             </div>
         </ManagerLayout>

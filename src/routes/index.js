@@ -7,6 +7,7 @@ import User from '../pages/User'
 import Customer from '../pages/Customer'
 import Accounting from '../pages/Accounting';
 import Profile from '../pages/Profile'
+import Staff from '../pages/Staff'
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -18,6 +19,7 @@ const publicRoutes = [
     { path: '/user/profile', component: Profile },
     { path: '/customer', component: Customer },
     { path: '/accounting', component: Accounting },
+    { path: '/staff', component: Staff },
 ];
 
 

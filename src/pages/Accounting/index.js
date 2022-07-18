@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 
 import { AppContext } from '../../App';
 import styles from './Accounting.module.scss';
@@ -9,7 +9,8 @@ import ManagerLayout from '../../components/Layout/ManagerLayout';
 const cx = classNames.bind(styles);
 
 function Accounting() {
-    const { payList, setPayList } = useContext(AppContext);
+    const { payList,coin,setCoin } = useContext(AppContext);
+    const totalRef = useRef('')
     return (
         <ManagerLayout>
             <div className={cx('wrapper')}>
@@ -19,35 +20,28 @@ function Accounting() {
                             <th>Name</th>
                             <th>Room</th>
                             <th>Time</th>
-                            <th>Services</th>
                             <th>Price Room</th>
                             <th>Cost Services</th>
                             <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {payList.map((item) => {
+                        {payList?.map((item,index) => {
                             console.log(item);
                             return (
-                                <tr key="">
+                                <tr key={index}>
                                     <td>{item.name}</td>
                                     <td>{item.roomName}</td>
                                     <td>{item.time}</td>
-                                    <td className={cx('services-list')}>
-                                        {item.services.map((item, index) => (
-                                            <span key={index}>
-                                                {item['name']} x {item['number']}
-                                            </span>
-                                        ))}
-                                    </td>
                                     <td>{item.priceRoom}</td>
-                                    <td>4000</td>
-                                    <td>6000</td>
+                                    <td>{item.cost}</td>
+                                    <td >{item.priceRoom*item.time+item.cost}</td>
                                 </tr>
                             );
                         })}
                     </tbody>
                 </table>
+               <p className={cx('total')}> Total Coin : {coin}</p>
             </div>
         </ManagerLayout>
     );

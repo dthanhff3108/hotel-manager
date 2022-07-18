@@ -1,0 +1,26 @@
+.wrapper{
+    padding: 40px;
+    display: flex;
+}
+.staff{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(204, 204, 204,.5);
+    padding: 16px 20px;
+    border-radius:12px;
+    margin: 10px;
+    min-width: 300px;
+    height: fit-content;
+    p{
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
+.staff-avt{
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit:cover;
+    align-self: center;
+    margin-bottom: 10px;
+}

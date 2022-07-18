@@ -1,5 +1,7 @@
 import React, { useState, useRef, useContext} from 'react';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons';
  
 import ManagerLayout from '../../components/Layout/ManagerLayout';
 import RegisterCard from '../../components/RegisterCard'
@@ -14,7 +16,7 @@ function MainStaff() {
     return (     
        <ManagerLayout>
             <div className={cx("wrapper")}>
-                <h1>List booking:</h1>
+                {bookingList.length ? <h1>List booking:</h1> : <h1>Opps !!, It looks like there are no reservations at all <FontAwesomeIcon style={{marginLeft:"10px"}} icon={faFaceSadTear}/> </h1>}
                 {bookingList.map(bookingItem=>(
                     <RegisterCard  {...rest} bookingItem={bookingItem} key={bookingItem.idRoom}/>
                 ))}
