@@ -1,8 +1,9 @@
 
 
-### `npm start`
+### Account Admin : admin / admin
+### Guest Admin : minhnv / 1
 
-Runs the app in the development mode.\
+
 
 Technology : 
 ReactJS , SCSS , FireBase
